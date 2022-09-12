@@ -1,2 +1,2 @@
-# algorythm
+# algorithm
 algorithm_study
