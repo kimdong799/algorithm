@@ -1,2 +1,0 @@
-# algorythm
-algorithm_study
