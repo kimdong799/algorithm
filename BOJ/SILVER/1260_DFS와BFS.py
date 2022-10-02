@@ -4,8 +4,51 @@
 '''
 
 import sys
+from collections import deque
 
-n, m, v = map(int, sys.stdin.readline().split())
+# n = 정점의 갯수
+# m = 간선의 개수
+# v = 시작 노드 값
 
-for i in range(m):
-    
+n, m, start = map(int, sys.stdin.readline().split())
+
+# input graph
+graph = [[] for _ in range(n+1)]
+graph[0] = [0,0]
+for _ in range(m):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+# graph sort
+[i.sort for i in graph]
+
+# visited list
+visited_bfs = [False] * (n+1)
+visited_dfs = [False] * (n+1)
+
+# bfs
+# queue사용
+def bfs(graph, start, visited_bfs):
+    visited_bfs[start] = True
+    queue = deque([start])
+    while queue:
+        v = queue.popleft()
+        print(v, end=' ')
+        for i in graph[v]:
+            if not visited_bfs[i]:
+                queue.append(i)
+                visited_bfs[i] = True
+
+# dfs
+# stack 사용
+def dfs(graph, start, visited_dfs):
+    visited_dfs[start] = True
+    print(start, end=' ')
+    for i in graph[start]:
+        if not visited_dfs[i]:
+            dfs(graph, i, visited_dfs)
+
+dfs(graph, start, visited_dfs)
+print()
+bfs(graph, start, visited_bfs)
