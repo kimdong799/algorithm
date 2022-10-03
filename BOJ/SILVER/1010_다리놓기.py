@@ -16,6 +16,7 @@
 
 import sys
 import math
+
 T = int(sys.stdin.readline())
 
 result = []
