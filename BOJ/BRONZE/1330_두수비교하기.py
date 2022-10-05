@@ -5,6 +5,6 @@ a, b = map(int, sys.stdin.readline().split())
 if a>b:
     print(">")
 elif a==b:
-    print("=")
+    print("==")
 else:
     print("<")
