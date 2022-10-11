@@ -1,13 +1,12 @@
-def selfNumber(x):
-    if x >= 10000:
-        return
-    else:
-        print(x)
-        x_str = str(x)
-        for i in x_str:
-            x += int(i)
-        selfNumber(x)
+numbers = set(range(1, 10000))
+remove_set = set()
 
-x = 1
+for i in numbers:
+    for j in str(i):
+        i += int(j)
+    if i <= 10000:
+        remove_set.add(i)
 
-selfNumber(x)
+self_num = numbers - remove_set
+
+[print(i) for i in sorted(self_num)]
