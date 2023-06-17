@@ -22,16 +22,33 @@ for _ in range(m):
     graph[b].append(a)
 
 # graph sort
-[i.sort for i in graph]
+[i.sort() for i in graph]
 
 print(graph)
+
 visited_dfs = [False] * (n+1)
+visited_bfs = [False] * (n+1)
 
 def dfs(idx):
     visited_dfs[idx] = True
-    print(idx)
+    print(idx, end=' ')
     for i in graph[idx]:
         if not visited_dfs[i]:
             dfs(i)
 
+queue = deque()
+
+def bfs(start):
+    queue.append(start)
+    visited_bfs[start] = True
+    while queue:
+        idx = queue.popleft()
+        print(idx, end=' ')
+        for i in graph[idx]:
+            if not visited_bfs[i]:
+                visited_bfs[i] = True
+                queue.append(i)
+
 dfs(start)
+print()
+bfs(start)
