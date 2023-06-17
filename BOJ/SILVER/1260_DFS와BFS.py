@@ -15,6 +15,7 @@ n, m, start = map(int, sys.stdin.readline().split())
 # input graph
 graph = [[] for _ in range(n+1)]
 graph[0] = [0,0]
+
 for _ in range(m):
     a, b = map(int, sys.stdin.readline().split())
     graph[a].append(b)
@@ -23,32 +24,14 @@ for _ in range(m):
 # graph sort
 [i.sort for i in graph]
 
-# visited list
-visited_bfs = [False] * (n+1)
+print(graph)
 visited_dfs = [False] * (n+1)
 
-# bfs
-# queue사용
-def bfs(graph, start, visited_bfs):
-    visited_bfs[start] = True
-    queue = deque([start])
-    while queue:
-        v = queue.popleft()
-        print(v, end=' ')
-        for i in graph[v]:
-            if not visited_bfs[i]:
-                queue.append(i)
-                visited_bfs[i] = True
-
-# dfs
-# stack 사용
-def dfs(graph, start, visited_dfs):
-    visited_dfs[start] = True
-    print(start, end=' ')
-    for i in graph[start]:
+def dfs(idx):
+    visited_dfs[idx] = True
+    print(idx)
+    for i in graph[idx]:
         if not visited_dfs[i]:
-            dfs(graph, i, visited_dfs)
+            dfs(i)
 
-dfs(graph, start, visited_dfs)
-print()
-bfs(graph, start, visited_bfs)
+dfs(start)
