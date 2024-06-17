@@ -21,3 +21,18 @@ while True:
     result += second
     m -= 1
 print(result)
+
+# 개선된 풀이방식
+n, m, k = map(int, input().split())
+input_arr = sorted(list(map(int, input().split())), reverse=True)
+first, second = input_arr[0], input_arr[1]
+result = 0
+
+# 수열이 반복되는 횟수 * k번 = 가장 큰 수가 더해진 횟수
+count = (m // (k + 1)) * k
+# 수열이 딱 떨어지지 않는 경우 예외처리
+count += m % (k + 1)
+
+result += (count) * first
+result += (m - count) * second
+print(result)
