@@ -1,2 +1,2 @@
 # algorithm
-algorithm_study
+하루에 하나씩 🔥
